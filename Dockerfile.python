@@ -1,0 +1,23 @@
+# Используем базовый образ Python 3.9 slim
+FROM python:3.9-slim
+
+# Устанавливаем рабочую директорию в контейнере
+WORKDIR /app
+
+# Копируем файлы проекта в рабочую директорию
+COPY . .
+
+# Устанавливаем зависимости
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Указываем переменные окружения по умолчанию (если необходимо)
+#ENV DB_HOST=127.0.0.1
+#    DB_USER=app
+#    DB_PASSWORD=very_strong
+#    DB_NAME=example
+
+# Открываем порт, на котором будет работать приложение
+EXPOSE 5000
+
+# Команда запуска приложения
+CMD ["python", "main.py"]

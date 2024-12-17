@@ -1,0 +1,48 @@
+version: '3.9'
+
+# Подключаем proxy.yaml
+include:
+  - proxy.yaml
+
+services:
+    # Сервис базы данных MySQL
+  db:
+    image: mysql:8
+    restart: always
+    env_file: .env
+    environment:
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      backend:
+        ipv4_address: 172.20.0.10
+
+  # Сервис web-приложения
+  web:
+    #build:
+    #  context: ./ # Указывает на текущую директорию (где находится Dockerfile.python)
+    #  dockerfile: Dockerfile.python
+    # Или используйте образ из Yandex Cloud Container Registry, если он был создан ранее:
+    image: cr.yandex/crpl0midieqopo0cq4jq/shvirtd-example-python-nevzorovvv:latest
+    restart: always
+    env_file: .env	
+    environment:
+      DB_HOST: db
+      DB_DATABASE: ${MYSQL_DATABASE}
+      DB_USER: ${MYSQL_USER}
+      DB_PASSWORD: ${MYSQL_PASSWORD}
+    depends_on:
+      - db
+    networks:
+      backend:
+        ipv4_address: 172.20.0.5
+
+networks:
+  backend:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
