@@ -30,7 +30,7 @@ services:
     restart: always
     env_file: .env	
     environment:
-      DB_HOST: ${MYSQL_HOST}
+      DB_HOST: db
       DB_DATABASE: ${MYSQL_DATABASE}
       DB_USER: ${MYSQL_USER}
       DB_PASSWORD: ${MYSQL_PASSWORD}
