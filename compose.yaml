@@ -22,11 +22,11 @@ services:
 
   # Сервис web-приложения
   web:
-    #build:
-    #  context: ./ # Указывает на текущую директорию (где находится Dockerfile.python)
-    #  dockerfile: Dockerfile.python
+    build:
+      context: ./ # Указывает на текущую директорию (где находится Dockerfile.python)
+      dockerfile: Dockerfile.python
     # Или используйте образ из Yandex Cloud Container Registry, если он был создан ранее:
-    image: cr.yandex/crpl0midieqopo0cq4jq/shvirtd-example-python-nevzorovvv:latest
+    #image: cr.yandex/crpl0midieqopo0cq4jq/shvirtd-example-python-nevzorovvv:latest
     restart: always
     env_file: .env	
     environment:
