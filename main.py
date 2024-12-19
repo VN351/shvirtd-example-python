@@ -8,7 +8,7 @@ app = Flask(__name__)
 db_host=os.environ.get('DB_HOST')
 db_user=os.environ.get('DB_USER')
 db_password=os.environ.get('DB_PASSWORD')
-db_database=os.environ.get('DB_NAME')
+db_database=os.environ.get('DB_DATABASE')
 
 # Подключение к базе данных MySQL
 db = mysql.connector.connect(
