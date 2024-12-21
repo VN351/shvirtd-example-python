@@ -1,0 +1,19 @@
+# Исключаем git информацию
+.git
+.gitignore
+.dockerignore
+
+# Исключаем виртуальное окружение
+venv
+
+# Исключаем прочие ненужные файлы
+_pycache__
+*.pyc
+*.pyo
+*.pyd
+*.yaml
+not_tested_main.py
+.md
+LICENSE
+.pdf
+   
